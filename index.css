@@ -20,12 +20,19 @@ h1{
     font-style: italic;
 }
 
+.player{
+    position: center;
+    padding-top: 150px;
+}
+
 .grid-button{
     display: grid;
     position: absolute;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 5px;
     left: 50%;
+    padding-top: 30px;
+    transform: translateY(-60%);
     transform: translate(-50%);
     align-items: center;
     justify-content: center;
