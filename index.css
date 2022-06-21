@@ -23,6 +23,7 @@ h1{
 .player{
     position: center;
     padding-top: 120px;
+    padding-bottom: 50px;
 }
 
 .grid-button{
@@ -49,4 +50,15 @@ h1{
     margin-bottom: 2px;
     margin-top: 2px;
 
+}
+
+
+#dealer-el{
+    color: black;
+    position: static;
+    background-color: goldenrod;
+    font-size: 20;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 }

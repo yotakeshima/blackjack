@@ -7,10 +7,15 @@ let messageEl = document.getElementById("message-el")
 let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("card-el")
 let playerEl = document.getElementById("player-el")
+let dealerEl = document.getElementById("dealer-el")
 
 let player = {
     name: "Yoshi",
     chips: 200,
+}
+
+let dealer = {
+    dCards: [],
 }
 
 function getRandomCard(){
@@ -26,15 +31,20 @@ function getRandomCard(){
     }
 }
 
+//start the game
 function startGame(){
 alive = true 
 let firstCard = getRandomCard()
 let secondCard = getRandomCard()
+dealer.dCards.push(getRandomCard)
+dealer.dCards.push(getRandomCard)
 cards = [firstCard, secondCard]
 sum = firstCard + secondCard
 playerEl.textContent = player.name + ": $" + player.chips 
     renderGame()
 }
+
+//renders the game
 function renderGame(){
     cardsEl.textContent = "Cards: "
     for(let i = 0; i < cards.length; i++){
@@ -58,6 +68,7 @@ function renderGame(){
     messageEl.textContent = message
 }
 
+//draws a new card for the player
 function newCard(){
     if(alive === true && blackJack === false){
     let newCard = getRandomCard()
