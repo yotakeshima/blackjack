@@ -44,6 +44,17 @@ function startGame() {
     cards = [firstCard, secondCard];
     sum = firstCard + secondCard;
     dSum = dealer.dCards[0] + dealer.dCards[1];
+    if (sum === 22 || dSum === 22) {
+      if (sum === 22) {
+        cards[0] = 1;
+        cards[1] = 11;
+        sum = cards[0] + cards[1];
+      } else {
+        dealer.dCards[0] = 1;
+        dealer.dCards[1] = 11;
+        dSum = dealer.dCards[0] + dealer.dCards[1];
+      }
+    }
     playerEl.textContent = player.name + ": $" + player.chips;
     betEl.textContent = "Bet: " + 0;
     renderGame();
@@ -62,16 +73,22 @@ function renderGame() {
   }
   sumEl.textContent = "Sum: " + sum;
   dealerSum.textContent = "Sum: " + dSum;
+
   if (sum <= 20 && alive === true) {
     message = "Do you want to draw a new card?";
-  } else if (sum === 21) {
+  } else if (sum === 21 && dSum != 21) {
     alive = false;
     message = "You got Blackjack!";
+    player.chips *= 2;
+    playerEl.textContent = player.name + ": $" + player.chips;
   } else if (dSum > 21 || (sum < 21 && sum > dSum)) {
     alive = false;
     message = "You Win!";
     player.chips *= 2;
     playerEl.textContent = player.name + ": $" + player.chips;
+  } else if (sum === dSum) {
+    alive = false;
+    message = "Draw...";
   } else {
     alive = false;
     message = "You lost...";
@@ -95,7 +112,7 @@ function newCard() {
 function dealerTurn() {
   if (alive === true) {
     alive = false;
-    while (dSum <= 17) {
+    while (dSum < 17) {
       let newCard = getRandomCard();
       dSum += newCard;
       dealer.dCards.push(newCard);
