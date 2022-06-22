@@ -90,6 +90,7 @@ function newCard() {
   }
 }
 
+//After a players turn is finished
 function dealerTurn() {
   if (alive === true) {
     alive = false;
@@ -102,6 +103,7 @@ function dealerTurn() {
   }
 }
 
+//resets the game and chips
 function reset() {
   player.chips = 200;
   alive = false;
