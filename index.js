@@ -1,5 +1,7 @@
 let cards = []
 let sum = 0
+let dSum = 0
+let bet = 0
 let blackJack = false
 let alive = false
 let message = ""
@@ -7,7 +9,8 @@ let messageEl = document.getElementById("message-el")
 let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("card-el")
 let playerEl = document.getElementById("player-el")
-let dealerEl = document.getElementById("dealer-el")
+let dealerCards = document.getElementById("d-cards")
+let dealerSum = document.getElementById("d-sum")
 
 let player = {
     name: "Yoshi",
@@ -36,10 +39,10 @@ function startGame(){
 alive = true 
 let firstCard = getRandomCard()
 let secondCard = getRandomCard()
-dealer.dCards.push(getRandomCard)
-dealer.dCards.push(getRandomCard)
+dealer.dCards = [getRandomCard(), getRandomCard()]
 cards = [firstCard, secondCard]
 sum = firstCard + secondCard
+dSum = dealer.dCards[0] + dealer.dCards[1]
 playerEl.textContent = player.name + ": $" + player.chips 
     renderGame()
 }
@@ -47,17 +50,27 @@ playerEl.textContent = player.name + ": $" + player.chips
 //renders the game
 function renderGame(){
     cardsEl.textContent = "Cards: "
+    dealerCards.textContent = "Cards: "
+    for(let i = 0; i < dealer.dCards.length; i++){
+        dealerCards.textContent += dealer.dCards[i] + "  "
+    }
     for(let i = 0; i < cards.length; i++){
         cardsEl.textContent += cards[i] + "  "
     }
-
     sumEl.textContent = "Sum: " + sum
-    if (sum <=20){
+    dealerSum.textContent = "Sum: " + dSum
+    if (sum <=20 && alive === true){
         message = "Do you want to draw a new card?"
     }
     else if (sum === 21){
         alive = false
         message = "You got Blackjack!"
+    }
+    else if(dSum > 21 || (sum < 21  && sum > dSum)){
+        alive = false
+        message = "You Win!"
+        player.chips *= 2
+        playerEl.textContent = player.name + ": $" + player.chips 
     }
     else{
         alive = false
@@ -65,6 +78,7 @@ function renderGame(){
         player.chips -= 50
         playerEl.textContent = player.name + ": $" + player.chips 
     }
+    
     messageEl.textContent = message
 }
 
@@ -76,4 +90,14 @@ function newCard(){
     cards.push(newCard)
     renderGame()
     }
+}
+
+function dealerTurn(){
+    alive = false
+    while(dSum <= 17){
+        let newCard = getRandomCard()
+        dSum += newCard
+        dealer.dCards.push(newCard)
+    }
+    renderGame()
 }
