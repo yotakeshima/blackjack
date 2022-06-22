@@ -23,7 +23,7 @@ h1{
 .player{
     position: center;
     padding-top: 120px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 }
 
 .grid-button{
@@ -52,6 +52,14 @@ h1{
 
 }
 
+.dealer{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 400px;
+    padding: 40px;
+    border: solid black;
+}
 
 #dealer-el{
     color: black;

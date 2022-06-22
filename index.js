@@ -11,6 +11,8 @@ let cardsEl = document.getElementById("card-el")
 let playerEl = document.getElementById("player-el")
 let dealerCards = document.getElementById("d-cards")
 let dealerSum = document.getElementById("d-sum")
+let betEl = document.getElementById("bet-el")
+
 
 let player = {
     name: "Yoshi",
@@ -44,6 +46,7 @@ cards = [firstCard, secondCard]
 sum = firstCard + secondCard
 dSum = dealer.dCards[0] + dealer.dCards[1]
 playerEl.textContent = player.name + ": $" + player.chips 
+betEl.textContent = "Bet: " + 0;
     renderGame()
 }
 
