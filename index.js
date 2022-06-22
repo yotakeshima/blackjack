@@ -16,7 +16,7 @@ let betEl = document.getElementById("bet-el");
 
 let player = {
   name: "Yoshi",
-  chips: 200,
+  chips: 100,
 };
 
 let dealer = {
@@ -36,12 +36,14 @@ function getRandomCard() {
 }
 function placeBet(bet) {
   let temp = bet;
-  if (temp === 1) {
-    temp = player.chips;
-  }
-  if (alive === true && global_bet + temp <= player.chips) {
-    global_bet += temp;
-    betEl.textContent = "Bet: $" + global_bet;
+  if (betPlaced === false) {
+    if (temp === 1) {
+      temp = player.chips;
+    }
+    if (alive === true && global_bet + temp <= player.chips) {
+      global_bet += temp;
+      betEl.textContent = "Bet: $" + global_bet;
+    }
   }
 }
 
@@ -53,8 +55,10 @@ function done() {
 }
 
 function clearBet() {
-  global_bet = 0;
-  betEl.textContent = "Bet: $0";
+  if (betPlaced === false) {
+    global_bet = 0;
+    betEl.textContent = "Bet: $0";
+  }
 }
 
 //start the game
