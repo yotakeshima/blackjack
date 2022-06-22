@@ -1,7 +1,8 @@
 let cards = [];
 let sum = 0;
 let dSum = 0;
-let bet = 0;
+let global_bet = 0;
+let betPlaced = false;
 let blackJack = false;
 let alive = false;
 let message = "";
@@ -33,11 +34,32 @@ function getRandomCard() {
     return randomNumber;
   }
 }
+function placeBet(bet) {
+  let temp = bet;
+  if (temp === 1) {
+    temp = player.chips;
+  }
+  if (alive === true && global_bet + temp <= player.chips) {
+    global_bet += temp;
+    betEl.textContent = "Bet: $" + global_bet;
+  }
+}
+
+function done() {
+  if (global_bet > 0) {
+    betPlaced = true;
+    renderGame();
+  }
+}
+
+function clearBet() {
+  global_bet = 0;
+  betEl.textContent = "Bet: $0";
+}
 
 //start the game
 function startGame() {
   if (alive === false) {
-    alive = true;
     let firstCard = getRandomCard();
     let secondCard = getRandomCard();
     dealer.dCards = [getRandomCard(), getRandomCard()];
@@ -56,7 +78,7 @@ function startGame() {
       }
     }
     playerEl.textContent = player.name + ": $" + player.chips;
-    betEl.textContent = "Bet: " + 0;
+    betEl.textContent = "Bet: $" + global_bet;
     renderGame();
   }
 }
@@ -74,34 +96,53 @@ function renderGame() {
   sumEl.textContent = "Sum: " + sum;
   dealerSum.textContent = "Sum: " + dSum;
 
-  if (sum <= 20 && alive === true) {
-    message = "Do you want to draw a new card?";
-  } else if (sum === 21 && dSum != 21) {
-    alive = false;
-    message = "You got Blackjack!";
-    player.chips *= 2;
-    playerEl.textContent = player.name + ": $" + player.chips;
-  } else if (dSum > 21 || (sum < 21 && sum > dSum)) {
-    alive = false;
-    message = "You Win!";
-    player.chips *= 2;
-    playerEl.textContent = player.name + ": $" + player.chips;
-  } else if (sum === dSum) {
-    alive = false;
-    message = "Draw...";
+  if (alive === false && betPlaced === false) {
+    messageEl.textContent = "Place Your Bet";
+    alive = true;
   } else {
-    alive = false;
-    message = "You lost...";
-    player.chips -= 50;
-    playerEl.textContent = player.name + ": $" + player.chips;
-  }
+    if (sum <= 20 && alive === true) {
+      message = "Do you want to draw a new card?";
+    } else if (sum === 21 && dSum != 21) {
+      dealerTurn();
+      if (dSum != 21) {
+        alive = false;
+        betPlaced = false;
+        message = "You got Blackjack!";
+        global_bet *= 2;
+        player.chips += global_bet;
+        playerEl.textContent = player.name + ": $" + player.chips;
+        global_bet = 0;
+      }
+    } else if (dSum > 21 || (sum < 21 && sum > dSum)) {
+      alive = false;
+      betPlaced = false;
+      message = "You Win!";
+      global_bet *= 2;
+      player.chips += global_bet;
+      playerEl.textContent = player.name + ": $" + player.chips;
 
-  messageEl.textContent = message;
+      global_bet = 0;
+    } else if (sum === dSum) {
+      alive = false;
+      betPlaced = false;
+      message = "Draw...";
+      global_bet = 0;
+    } else {
+      alive = false;
+      betPlaced = false;
+      message = "You lost...";
+      player.chips -= global_bet;
+      playerEl.textContent = player.name + ": $" + player.chips;
+      global_bet = 0;
+    }
+
+    messageEl.textContent = message;
+  }
 }
 
 //draws a new card for the player
 function newCard() {
-  if (alive === true && blackJack === false) {
+  if (alive === true && blackJack === false && betPlaced === true) {
     let newCard = getRandomCard();
     sum += newCard;
     cards.push(newCard) + renderGame();

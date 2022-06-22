@@ -24,19 +24,27 @@
     </div>
     <div class="player-ui">
       <div class="l-container">
-        <text id="player-el">TEST</text>
+        <text id="player-el"></text>
         <br />
-        <text id="bet-el" style="line-height: 2rem">TEST</text>
+        <text id="bet-el" style="line-height: 2rem"></text>
       </div>
       <div class="r-container">
-        <button class="bet-button">$5</button>
-        <button class="bet-button">$10</button>
-        <button class="bet-button">$25</button>
-        <button class="bet-button">$50</button>
-        <button class="bet-button">$100</button>
-        <button class="bet-button">ALL IN</button>
+        <button class="bet-button" onclick="placeBet(5)">$5</button>
+        <button class="bet-button" onclick="placeBet(10)">$10</button>
+        <button class="bet-button" onclick="placeBet(25)">$25</button>
+        <button class="bet-button" onclick="placeBet(50)">$50</button>
+        <button class="bet-button" onclick="placeBet(100)">$100</button>
+        <button class="bet-button" onclick="placeBet(1)">ALL IN</button>
+        <br />
+        <button class="bet-button" id="done-button" onclick="done()">
+          DONE
+        </button>
+        <button class="bet-button" id="clear-button" onclick="clearBet()">
+          CLEAR
+        </button>
       </div>
     </div>
+
     <div class="dealer">
       <text id="dealer-el"> DEALER </text>
       <p id="d-cards" style="line-height: 3rem">Cards:</p>
