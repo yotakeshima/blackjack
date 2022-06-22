@@ -5,6 +5,7 @@ let global_bet = 0;
 let betPlaced = false;
 let blackJack = false;
 let alive = false;
+let finishedTurn = false;
 let message = "";
 let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
@@ -91,15 +92,20 @@ function startGame() {
 function renderGame() {
   cardsEl.textContent = "Cards: ";
   dealerCards.textContent = "Cards: ";
-  for (let i = 0; i < dealer.dCards.length; i++) {
-    dealerCards.textContent += dealer.dCards[i] + "  ";
+  if (finishedTurn === true) {
+    for (let i = 0; i < dealer.dCards.length; i++) {
+      dealerCards.textContent += dealer.dCards[i] + "  ";
+    }
+    finishedTurn = false;
+    dealerSum.textContent = "Sum: " + dSum;
+  } else {
+    dealerCards.textContent = "Cards: ? " + dealer.dCards[1];
+    dealerSum.textContent = "Sum: " + "?";
   }
   for (let i = 0; i < cards.length; i++) {
     cardsEl.textContent += cards[i] + "  ";
   }
   sumEl.textContent = "Sum: " + sum;
-  dealerSum.textContent = "Sum: " + dSum;
-
   if (alive === false && betPlaced === false) {
     messageEl.textContent = "Place Your Bet";
     alive = true;
@@ -155,13 +161,14 @@ function newCard() {
 
 //After a players turn is finished
 function dealerTurn() {
-  if (alive === true) {
+  if (alive === true && betPlaced === true) {
     alive = false;
     while (dSum < 17) {
       let newCard = getRandomCard();
       dSum += newCard;
       dealer.dCards.push(newCard);
     }
+    finishedTurn = true;
     renderGame();
   }
 }
