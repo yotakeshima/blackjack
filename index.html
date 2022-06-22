@@ -3,10 +3,15 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1>Blackjack</h1>
-    <p id="message-el">Want to play a round?</p>
-    <p id="card-el">Cards:</p>
-    <p id="sum-el">Sum:</p>
+    <div class="header">
+      <h1>Blackjack</h1>
+      <p id="message-el">
+        Welcome to Blackjack<br style="height: 2rem" />Click 'Start Game' to
+        play!
+      </p>
+      <p id="card-el">Cards:</p>
+      <p id="sum-el">Sum:</p>
+    </div>
     <div class="grid-button">
       <button class="button" id="sg-button" onclick="startGame()">
         START GAME
@@ -17,9 +22,20 @@
       </button>
       <button class="button" id="reset" onclick="reset()">RESET</button>
     </div>
-    <div class="player">
-      <p id="player-el"></p>
-      <p id="bet-el"></p>
+    <div class="player-ui">
+      <div class="l-container">
+        <text id="player-el">TEST</text>
+        <br />
+        <text id="bet-el" style="line-height: 2rem">TEST</text>
+      </div>
+      <div class="r-container">
+        <button class="bet-button">$5</button>
+        <button class="bet-button">$10</button>
+        <button class="bet-button">$25</button>
+        <button class="bet-button">$50</button>
+        <button class="bet-button">$100</button>
+        <button class="bet-button">ALL IN</button>
+      </div>
     </div>
     <div class="dealer">
       <text id="dealer-el"> DEALER </text>

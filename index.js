@@ -22,6 +22,7 @@ let dealer = {
   dCards: [],
 };
 
+//random number generator
 function getRandomCard() {
   let randomNumber = Math.floor(Math.random() * 13) + 1;
   if (randomNumber > 10) {
@@ -105,7 +106,5 @@ function dealerTurn() {
 
 //resets the game and chips
 function reset() {
-  player.chips = 200;
-  alive = false;
-  startGame();
+  location.reload();
 }

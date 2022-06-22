@@ -2,14 +2,16 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   background-image: url(blackjack\ table.jpg);
-  max-width: 100%;
-  max-height: 100%;
   object-fit: contain;
   background-size: cover;
   position: center;
   text-align: center;
   color: white;
   font-weight: bold;
+}
+
+.header {
+  position: relative;
 }
 
 h1 {
@@ -20,26 +22,37 @@ h1 {
   font-style: italic;
 }
 
-.player {
-  position: center;
-  padding-top: 120px;
-  padding-bottom: 30px;
+.player-ui {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 350px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.r-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2px;
 }
 
 .grid-button {
+  width: 300px;
   display: grid;
-  position: absolute;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
-  left: 50%;
-  padding-top: 30px;
-  transform: translateY(-60%);
-  transform: translate(-50%);
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: center;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
 }
+
 .button {
-  color: #016f32;
+  color: black;
   width: 150px;
   height: 30;
   border-radius: 5px;
@@ -50,12 +63,23 @@ h1 {
   margin-top: 2px;
 }
 
+.bet-button {
+  color: black;
+  width: 60px;
+  height: 30;
+  border-radius: 5px;
+  background: goldenrod;
+  border: 1px solid black;
+  font-weight: bold;
+}
+
 .dealer {
-  position: absolute;
+  width: 400px;
+  height: 140px;
+  padding: 40px;
+  position: relative;
   left: 50%;
   transform: translate(-50%);
-  width: 400px;
-  padding: 40px;
   border: solid black;
 }
 
