@@ -1,28 +1,30 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        <h1>Blackjack</h1>
-        <p id="message-el">Want to play a round?</p>
-        <p id="card-el">Cards:</p>
-        <p id="sum-el">Sum:</p>
-        <div class="grid-button">
-            <button class="button" id="sg-button" onclick="startGame()">START GAME</button>
-            <button class="button" id="new-card" onclick="newCard()">NEW CARD</button>
-            <button class="button" id="stay-button" onclick ="dealerTurn()">STAY</button>
-        </div>
-        <div class="player">
-            <p id="player-el"></p>
-            <p id="bet-el"></p>
-        </div>
-        <div class="dealer">    
-            <text id="dealer-el">
-                DEALER
-            </text>
-            <p id="d-cards" style="line-height: 3rem;">Cards:</p>
-            <p id="d-sum">Sum:</p> 
-        </div>
-        <script src="index.js"></script>
-    </body>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Blackjack</h1>
+    <p id="message-el">Want to play a round?</p>
+    <p id="card-el">Cards:</p>
+    <p id="sum-el">Sum:</p>
+    <div class="grid-button">
+      <button class="button" id="sg-button" onclick="startGame()">
+        START GAME
+      </button>
+      <button class="button" id="new-card" onclick="newCard()">NEW CARD</button>
+      <button class="button" id="stay-button" onclick="dealerTurn()">
+        STAY
+      </button>
+    </div>
+    <div class="player">
+      <p id="player-el"></p>
+      <p id="bet-el"></p>
+    </div>
+    <div class="dealer">
+      <text id="dealer-el"> DEALER </text>
+      <p id="d-cards" style="line-height: 3rem">Cards:</p>
+      <p id="d-sum">Sum:</p>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>
