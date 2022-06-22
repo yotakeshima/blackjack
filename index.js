@@ -35,16 +35,18 @@ function getRandomCard() {
 
 //start the game
 function startGame() {
-  alive = true;
-  let firstCard = getRandomCard();
-  let secondCard = getRandomCard();
-  dealer.dCards = [getRandomCard(), getRandomCard()];
-  cards = [firstCard, secondCard];
-  sum = firstCard + secondCard;
-  dSum = dealer.dCards[0] + dealer.dCards[1];
-  playerEl.textContent = player.name + ": $" + player.chips;
-  betEl.textContent = "Bet: " + 0;
-  renderGame();
+  if (alive === false) {
+    alive = true;
+    let firstCard = getRandomCard();
+    let secondCard = getRandomCard();
+    dealer.dCards = [getRandomCard(), getRandomCard()];
+    cards = [firstCard, secondCard];
+    sum = firstCard + secondCard;
+    dSum = dealer.dCards[0] + dealer.dCards[1];
+    playerEl.textContent = player.name + ": $" + player.chips;
+    betEl.textContent = "Bet: " + 0;
+    renderGame();
+  }
 }
 
 //renders the game
@@ -98,4 +100,10 @@ function dealerTurn() {
     }
     renderGame();
   }
+}
+
+function reset() {
+  player.chips = 200;
+  alive = false;
+  startGame();
 }
