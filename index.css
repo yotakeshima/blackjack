@@ -67,11 +67,22 @@ h1 {
   width: 150px;
   height: 30;
   border-radius: 5px;
-  background: goldenrod;
+  background: #daa520;
   font-weight: bold;
   border: none;
+  outline: none;
+  overflow: none;
   margin-bottom: 2px;
   margin-top: 2px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c2921b;
+}
+
+button:active {
+  background: #9e7a20;
 }
 
 .bet-button {
@@ -82,6 +93,7 @@ h1 {
   background: goldenrod;
   border: 1px solid black;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .dealer {
