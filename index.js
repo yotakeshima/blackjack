@@ -37,7 +37,7 @@ function getRandomCard() {
 }
 function placeBet(bet) {
   let temp = bet;
-  if (betPlaced === false) {
+  if  (betPlaced === false) {
     if (temp === 1) {
       temp = player.chips;
     }
